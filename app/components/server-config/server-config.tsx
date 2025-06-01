@@ -11,8 +11,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
-import { Switch } from "@radix-ui/react-switch";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { Switch } from "@/components/ui/switch";
 
 type Props = {};
 
@@ -25,19 +25,36 @@ export default function ServerConfig({}: Props) {
   const [pvpEnabled, setPvpEnabled] = useState(true);
   const [gameMode, setGameMode] = useState("");
 
+  const buildDockerfile = (config) => {
+    let dockerFileString = "";
+    dockerFileString += "FROM " + config.docker.image + "\n";
+    dockerFileString += "ENV VERSION=" + config.server.serverVersion + "\n";
+    dockerFileString += "ENV MAX_PLAYERS=" + config.server.maxPlayers + '\n';
+    console.log(dockerFileString);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const config = {
-      dockerImage,
-      serverVersion,
-      containerName,
-      maxPlayers,
-      worldSeed,
-      pvpEnabled,
-      gameMode,
+      docker: {
+        image: dockerImage,
+      },
+      server: {
+        serverVersion,
+        containerName,
+        maxPlayers,
+        worldSeed,
+        pvpEnabled,
+        gameMode,
+      },
     };
 
     console.log(config);
+    buildDockerfile(config);
+
+    // Call buidlDockerfile helper
+
+    // Blob
   };
 
   return (
@@ -55,7 +72,9 @@ export default function ServerConfig({}: Props) {
                 <SelectValue placeholder="Select an image" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="itzg">itzg/minecraft-server:latest</SelectItem>
+                <SelectItem value={"itzg/minecraft-server:latest"}>
+                  itzg/minecraft-server:latest
+                </SelectItem>
                 <SelectItem value="paper">Paper</SelectItem>
                 <SelectItem value="spigot">Spigot</SelectItem>
               </SelectContent>
@@ -108,14 +127,6 @@ export default function ServerConfig({}: Props) {
               placeholder="Leave blank for random"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <Label htmlFor="pvpEnabled">PvP Enabled</Label>
-            <Switch
-              id="pvpEnabled"
-              checked={pvpEnabled}
-              onCheckedChange={setPvpEnabled}
-            />
-          </div>
           <div className="space-y-2">
             <Label htmlFor="gameMode">Game Mode</Label>
             <Select onValueChange={setGameMode}>
@@ -128,6 +139,28 @@ export default function ServerConfig({}: Props) {
                 <SelectItem value="hardcore">Hardcore</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="difficulty">Difficulty</Label>
+            <Select onValueChange={setGameMode}>
+              <SelectTrigger id="difficulty">
+                <SelectValue placeholder="Select difficulty" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="peaceful">Peaceful</SelectItem>
+                <SelectItem value="easy">Easy</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="hard">Hard</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-4">
+            <Label htmlFor="pvpEnabled">PvP Enabled</Label>
+            <Switch
+              id="pvpEnabled"
+              checked={pvpEnabled}
+              onCheckedChange={setPvpEnabled}
+            />
           </div>
         </ScrollArea>
       </div>
