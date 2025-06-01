@@ -77,6 +77,8 @@ export default function ServerConfig({}: Props) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+
+    setShowHelp(true);
   };
 
   return (
@@ -91,12 +93,13 @@ export default function ServerConfig({}: Props) {
             <div className="space-y-2">
               <Label htmlFor="dockerImage">Docker Image</Label>
               <Select
+                value={dockerImage}
                 onValueChange={setDockerImage}
-                defaultValue={"itzg/minecraft-server:latest"}
+                // defaultValue={"itzg/minecraft-server:latest"}
                 required
               >
                 <SelectTrigger id="dockerImage">
-                  <SelectValue placeholder="Select an image" />
+                  <SelectValue>{dockerImage}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value={"itzg/minecraft-server:latest"}>
@@ -129,7 +132,7 @@ export default function ServerConfig({}: Props) {
                 required
               >
                 <SelectTrigger id="serverVersion">
-                  <SelectValue placeholder="Select version" />
+                  <SelectValue>{serverVersion}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="1.20.4">1.20.4</SelectItem>
@@ -172,7 +175,7 @@ export default function ServerConfig({}: Props) {
               <Label htmlFor="gameMode">Game Mode</Label>
               <Select onValueChange={setGameMode} defaultValue="survival">
                 <SelectTrigger id="gameMode">
-                  <SelectValue placeholder="Select game mode" />
+                  <SelectValue>{gameMode}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="survival">Survival</SelectItem>
@@ -185,7 +188,7 @@ export default function ServerConfig({}: Props) {
               <Label htmlFor="difficulty">Difficulty</Label>
               <Select onValueChange={setDifficulty} defaultValue="normal">
                 <SelectTrigger id="difficulty">
-                  <SelectValue placeholder="Select difficulty" />
+                  <SelectValue>{difficulty}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="peaceful">Peaceful</SelectItem>
@@ -214,7 +217,7 @@ export default function ServerConfig({}: Props) {
       <Button type="submit" className="mx-auto">
         Generate Dockerfile
       </Button>
-      <Help />
+      {showHelp && <Help />}
     </form>
   );
 }
