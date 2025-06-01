@@ -13,6 +13,7 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Help from "../help";
 
 type Props = {};
 
@@ -211,6 +212,7 @@ export default function ServerConfig({}: Props) {
       <Button type="submit" className="mx-auto">
         Generate Dockerfile
       </Button>
+      <Help />
     </form>
   );
 }
