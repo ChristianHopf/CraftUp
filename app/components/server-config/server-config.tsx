@@ -69,7 +69,7 @@ export default function ServerConfig() {
     const dockerfile = buildDockerfile();
 
     // Blob
-    const blob = new Blob([dockerfile], { type: "text/plain" });
+    const blob = new Blob([dockerfile], { type: "application/octet-stream" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
