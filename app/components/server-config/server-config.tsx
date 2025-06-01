@@ -17,13 +17,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 type Props = {};
 
 export default function ServerConfig({}: Props) {
-  const [dockerImage, setDockerImage] = useState("");
-  const [serverVersion, setServerVersion] = useState("");
+  const [dockerImage, setDockerImage] = useState(
+    "itzg/minecraft-server:latest"
+  );
+  const [serverVersion, setServerVersion] = useState("1.20.4");
   const [containerName, setContainerName] = useState("");
   const [maxPlayers, setMaxPlayers] = useState(8);
   const [worldName, setWorldName] = useState("");
   const [worldSeed, setWorldSeed] = useState("");
-  const [gameMode, setGameMode] = useState("");
+  const [gameMode, setGameMode] = useState("survival");
   const [difficulty, setDifficulty] = useState("normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
   const [eula, setEula] = useState(true);
@@ -42,10 +44,14 @@ export default function ServerConfig({}: Props) {
     dockerFileString += "ENV GAMEMODE=" + gameMode + "\n";
     dockerFileString += "ENV DIFFICULTY=" + difficulty + "\n";
     dockerFileString += "ENV PVP=" + pvpEnabled + "\n";
+    // Required to launch the server
+    dockerFileString += "ENV EULA=true\n";
 
     dockerFileString += "EXPOSE 25565\n";
 
     // Add more config later
+
+    console.log(dockerFileString);
 
     return dockerFileString;
   };
@@ -97,7 +103,7 @@ export default function ServerConfig({}: Props) {
               </Select>
             </div>
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label htmlFor="containerName">Container Name</Label>
               <Input
                 id="containerName"
@@ -106,7 +112,7 @@ export default function ServerConfig({}: Props) {
                 onChange={(e) => setContainerName(e.target.value)}
                 placeholder="e.g., my-minecraft-server"
               />
-            </div>
+            </div> */}
           </div>
         </ScrollArea>
         <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow space-y-6">
