@@ -11,10 +11,12 @@ export default function Help({}: Props) {
         <li>Open a terminal in the directory containing your Dockerfile</li>
         <li>Run these commands:</li>
       </ol>
-      <div className="bg-muted px-4 py-2 rounded-xl">
+      <div className="bg-muted px-4 py-2 rounded-xl space-y-2">
         <pre className="whitespace-pre-wrap font-mono text-sm">
-          {`docker build -t my-minecraft-server .
-docker run -d -p 25565:25565 --name my-minecraft-server my-minecraft-server`}
+          {`docker build -t my-minecraft-server .`}
+        </pre>
+        <pre className="whitespace-pre-wrap font-mono text-sm">
+          {`docker run -d -p 25565:25565 --name my-minecraft-server my-minecraft-server`}
         </pre>
       </div>
     </div>
