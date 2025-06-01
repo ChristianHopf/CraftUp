@@ -20,11 +20,11 @@ export default function ServerConfig({}: Props) {
   const [dockerImage, setDockerImage] = useState("");
   const [serverVersion, setServerVersion] = useState("");
   const [containerName, setContainerName] = useState("");
-  const [maxPlayers, setMaxPlayers] = useState(10);
+  const [maxPlayers, setMaxPlayers] = useState(8);
   const [worldName, setWorldName] = useState("");
   const [worldSeed, setWorldSeed] = useState("");
   const [gameMode, setGameMode] = useState("");
-  const [difficulty, setDifficulty] = useState("");
+  const [difficulty, setDifficulty] = useState("normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
 
   const buildDockerfile = () => {
@@ -42,6 +42,8 @@ export default function ServerConfig({}: Props) {
     dockerFileString += "ENV DIFFICULTY=" + difficulty + "\n";
     dockerFileString += "ENV PVP=" + pvpEnabled + "\n";
 
+    dockerFileString += "EXPOSE 25565\n";
+
     // Add more config later
 
     return dockerFileString;
@@ -56,6 +58,15 @@ export default function ServerConfig({}: Props) {
     const dockerfile = buildDockerfile();
 
     // Blob
+    const blob = new Blob([dockerfile], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Dockerfile";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -97,7 +108,7 @@ export default function ServerConfig({}: Props) {
           <h1 className="text-xl font-semibold">Server Configuration</h1>
           <div className="space-y-2">
             <Label htmlFor="serverVersion">Server Version</Label>
-            <Select onValueChange={setServerVersion} required>
+            <Select onValueChange={setServerVersion} defaultValue="1.20.4" required>
               <SelectTrigger id="serverVersion">
                 <SelectValue placeholder="Select version" />
               </SelectTrigger>
@@ -140,7 +151,7 @@ export default function ServerConfig({}: Props) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="gameMode">Game Mode</Label>
-            <Select onValueChange={setGameMode}>
+            <Select onValueChange={setGameMode} defaultValue="survival">
               <SelectTrigger id="gameMode">
                 <SelectValue placeholder="Select game mode" />
               </SelectTrigger>
@@ -153,7 +164,7 @@ export default function ServerConfig({}: Props) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="difficulty">Difficulty</Label>
-            <Select onValueChange={setDifficulty}>
+            <Select onValueChange={setDifficulty} defaultValue="normal">
               <SelectTrigger id="difficulty">
                 <SelectValue placeholder="Select difficulty" />
               </SelectTrigger>
