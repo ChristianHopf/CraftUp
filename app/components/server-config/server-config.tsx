@@ -11,8 +11,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Switch } from "@/components/ui/switch";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type Props = {};
 
@@ -26,6 +26,7 @@ export default function ServerConfig({}: Props) {
   const [gameMode, setGameMode] = useState("");
   const [difficulty, setDifficulty] = useState("normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
+  const [eula, setEula] = useState(true);
 
   const buildDockerfile = () => {
     let dockerFileString = "";
@@ -72,14 +73,18 @@ export default function ServerConfig({}: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-full max-w-4xl mx-auto space-y-6 p-6"
+      className="flex flex-col w-full max-w-4xl mx-auto space-y-6"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <ScrollArea className="max-w-2xl w-full mx-auto space-y-6 p-6 bg-muted rounded-2xl shadow">
+        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow">
           <h1 className="text-xl font-semibold">Docker Configuration</h1>
           <div className="space-y-2">
             <Label htmlFor="dockerImage">Docker Image</Label>
-            <Select onValueChange={setDockerImage} required>
+            <Select
+              onValueChange={setDockerImage}
+              defaultValue={"itzg/minecraft-server:latest"}
+              required
+            >
               <SelectTrigger id="dockerImage">
                 <SelectValue placeholder="Select an image" />
               </SelectTrigger>
@@ -87,8 +92,6 @@ export default function ServerConfig({}: Props) {
                 <SelectItem value={"itzg/minecraft-server:latest"}>
                   itzg/minecraft-server:latest
                 </SelectItem>
-                <SelectItem value="paper">Paper</SelectItem>
-                <SelectItem value="spigot">Spigot</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -104,11 +107,15 @@ export default function ServerConfig({}: Props) {
             />
           </div>
         </ScrollArea>
-        <ScrollArea className="max-w-2xl w-full mx-auto space-y-6 p-6 bg-muted rounded-2xl shadow">
+        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow">
           <h1 className="text-xl font-semibold">Server Configuration</h1>
           <div className="space-y-2">
             <Label htmlFor="serverVersion">Server Version</Label>
-            <Select onValueChange={setServerVersion} defaultValue="1.20.4" required>
+            <Select
+              onValueChange={setServerVersion}
+              defaultValue="1.20.4"
+              required
+            >
               <SelectTrigger id="serverVersion">
                 <SelectValue placeholder="Select version" />
               </SelectTrigger>
@@ -183,6 +190,10 @@ export default function ServerConfig({}: Props) {
               checked={pvpEnabled}
               onCheckedChange={setPvpEnabled}
             />
+          </div>
+          <div className="flex items-center gap-4">
+            <Label htmlFor="eula">Accept EULA</Label>
+            <Switch id="eula" checked={eula} onCheckedChange={setEula} />
           </div>
         </ScrollArea>
       </div>

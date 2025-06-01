@@ -4,7 +4,7 @@ import ServerConfig from "./components/server-config/server-config";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full justify-between min-h-screen p-8 pb-20 sm:p-20">
+    <div className="flex flex-col w-full justify-between min-h-screen p-8 md:p-20 gap-12">
       <main className="flex w-full flex-col gap-[32px] items-center sm:items-start">
         <h1 className="text-5xl mx-auto">CraftUp</h1>
         <ServerConfig />
