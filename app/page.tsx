@@ -12,7 +12,7 @@ export default function Home() {
       <footer className="flex gap-[24px] flex-wrap items-center justify-center">
         <span className="w-24">
           <a
-            href="https://github.com/ChristianHopf"
+            href="https://github.com/ChristianHopf/CraftUp"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2"
