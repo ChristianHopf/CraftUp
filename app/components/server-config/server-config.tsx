@@ -26,8 +26,8 @@ export default function ServerConfig({}: Props) {
   const [maxPlayers, setMaxPlayers] = useState(8);
   const [worldName, setWorldName] = useState("");
   const [worldSeed, setWorldSeed] = useState("");
-  const [gameMode, setGameMode] = useState("survival");
-  const [difficulty, setDifficulty] = useState("normal");
+  const [gameMode, setGameMode] = useState("Survival");
+  const [difficulty, setDifficulty] = useState("Normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
   const [eula, setEula] = useState(true);
 
@@ -44,8 +44,9 @@ export default function ServerConfig({}: Props) {
     if (worldSeed != "") {
       dockerFileString += "ENV WORLD_SEED=" + worldSeed + "\n";
     }
-    dockerFileString += "ENV GAMEMODE=" + gameMode + "\n";
-    dockerFileString += "ENV DIFFICULTY=" + difficulty + "\n";
+    dockerFileString += "ENV GAMEMODE=" + gameMode.toLocaleLowerCase() + "\n";
+    dockerFileString +=
+      "ENV DIFFICULTY=" + difficulty.toLocaleLowerCase() + "\n";
     dockerFileString += "ENV PVP=" + pvpEnabled + "\n";
     // Required to launch the server
     dockerFileString += "ENV EULA=true\n";
@@ -173,28 +174,28 @@ export default function ServerConfig({}: Props) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="gameMode">Game Mode</Label>
-              <Select onValueChange={setGameMode} defaultValue="survival">
+              <Select onValueChange={setGameMode} defaultValue="Survival">
                 <SelectTrigger id="gameMode">
                   <SelectValue>{gameMode}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="survival">Survival</SelectItem>
-                  <SelectItem value="creative">Creative</SelectItem>
-                  <SelectItem value="hardcore">Hardcore</SelectItem>
+                  <SelectItem value="Survival">Survival</SelectItem>
+                  <SelectItem value="Creative">Creative</SelectItem>
+                  <SelectItem value="Hardcore">Hardcore</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="difficulty">Difficulty</Label>
-              <Select onValueChange={setDifficulty} defaultValue="normal">
+              <Select onValueChange={setDifficulty} defaultValue="Normal">
                 <SelectTrigger id="difficulty">
                   <SelectValue>{difficulty}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="peaceful">Peaceful</SelectItem>
-                  <SelectItem value="easy">Easy</SelectItem>
-                  <SelectItem value="normal">Normal</SelectItem>
-                  <SelectItem value="hard">Hard</SelectItem>
+                  <SelectItem value="Peaceful">Peaceful</SelectItem>
+                  <SelectItem value="Easy">Easy</SelectItem>
+                  <SelectItem value="Normal">Normal</SelectItem>
+                  <SelectItem value="Hard">Hard</SelectItem>
                 </SelectContent>
               </Select>
             </div>
