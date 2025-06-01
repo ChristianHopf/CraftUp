@@ -31,6 +31,8 @@ export default function ServerConfig({}: Props) {
   const [pvpEnabled, setPvpEnabled] = useState(false);
   const [eula, setEula] = useState(true);
 
+  const [showHelp, setShowHelp] = useState(false);
+
   const buildDockerfile = () => {
     let dockerFileString = "";
     dockerFileString += "FROM " + dockerImage + "\n";
