@@ -1,8 +1,8 @@
 import React from "react";
 
-type Props = {};
+// type Props = {};
 
-export default function Help({}: Props) {
+export default function Help() {
   return (
     <div className="max-w-xl mx-auto bg-green-50 border border-green-300 p-6 rounded-2xl shadow-sm">
       <h2 className="font-semibold text-xl">Your Dockerfile is ready!</h2>

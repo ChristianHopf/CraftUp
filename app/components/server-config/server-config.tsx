@@ -15,14 +15,14 @@ import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Help from "../help";
 
-type Props = {};
+// type Props = {};
 
-export default function ServerConfig({}: Props) {
+export default function ServerConfig() {
   const [dockerImage, setDockerImage] = useState(
     "itzg/minecraft-server:latest"
   );
   const [serverVersion, setServerVersion] = useState("1.20.4");
-  const [containerName, setContainerName] = useState("");
+  // const [containerName, setContainerName] = useState("");
   const [maxPlayers, setMaxPlayers] = useState(8);
   const [worldName, setWorldName] = useState("");
   const [worldSeed, setWorldSeed] = useState("");
