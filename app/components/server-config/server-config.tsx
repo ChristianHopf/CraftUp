@@ -21,38 +21,39 @@ export default function ServerConfig({}: Props) {
   const [serverVersion, setServerVersion] = useState("");
   const [containerName, setContainerName] = useState("");
   const [maxPlayers, setMaxPlayers] = useState(10);
+  const [worldName, setWorldName] = useState("");
   const [worldSeed, setWorldSeed] = useState("");
-  const [pvpEnabled, setPvpEnabled] = useState(true);
   const [gameMode, setGameMode] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [pvpEnabled, setPvpEnabled] = useState(false);
 
-  const buildDockerfile = (config) => {
+  const buildDockerfile = () => {
     let dockerFileString = "";
-    dockerFileString += "FROM " + config.docker.image + "\n";
-    dockerFileString += "ENV VERSION=" + config.server.serverVersion + "\n";
-    dockerFileString += "ENV MAX_PLAYERS=" + config.server.maxPlayers + '\n';
-    console.log(dockerFileString);
+    dockerFileString += "FROM " + dockerImage + "\n";
+    dockerFileString += "ENV VERSION=" + serverVersion + "\n";
+    dockerFileString += "ENV MAX_PLAYERS=" + maxPlayers + "\n";
+    if (worldName != "") {
+      dockerFileString += "ENV WORLD_NAME=" + worldName + "\n";
+    }
+    if (worldSeed != "") {
+      dockerFileString += "ENV WORLD_SEED=" + worldSeed + "\n";
+    }
+    dockerFileString += "ENV GAMEMODE=" + gameMode + "\n";
+    dockerFileString += "ENV DIFFICULTY=" + difficulty + "\n";
+    dockerFileString += "ENV PVP=" + pvpEnabled + "\n";
+
+    // Add more config later
+
+    return dockerFileString;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const config = {
-      docker: {
-        image: dockerImage,
-      },
-      server: {
-        serverVersion,
-        containerName,
-        maxPlayers,
-        worldSeed,
-        pvpEnabled,
-        gameMode,
-      },
-    };
 
-    console.log(config);
-    buildDockerfile(config);
+    // Perform validation
 
-    // Call buidlDockerfile helper
+    // Build dockerfile
+    const dockerfile = buildDockerfile();
 
     // Blob
   };
@@ -67,7 +68,7 @@ export default function ServerConfig({}: Props) {
           <h1 className="text-xl font-semibold">Docker Configuration</h1>
           <div className="space-y-2">
             <Label htmlFor="dockerImage">Docker Image</Label>
-            <Select onValueChange={setDockerImage}>
+            <Select onValueChange={setDockerImage} required>
               <SelectTrigger id="dockerImage">
                 <SelectValue placeholder="Select an image" />
               </SelectTrigger>
@@ -96,7 +97,7 @@ export default function ServerConfig({}: Props) {
           <h1 className="text-xl font-semibold">Server Configuration</h1>
           <div className="space-y-2">
             <Label htmlFor="serverVersion">Server Version</Label>
-            <Select onValueChange={setServerVersion}>
+            <Select onValueChange={setServerVersion} required>
               <SelectTrigger id="serverVersion">
                 <SelectValue placeholder="Select version" />
               </SelectTrigger>
@@ -115,7 +116,17 @@ export default function ServerConfig({}: Props) {
               min={1}
               max={100}
               value={maxPlayers}
+              required
               onChange={(e) => setMaxPlayers(Number(e.target.value))}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="worldName">World Name</Label>
+            <Input
+              id="worldName"
+              value={worldName}
+              onChange={(e) => setWorldName(e.target.value)}
+              placeholder="world"
             />
           </div>
           <div className="space-y-2">
@@ -142,14 +153,14 @@ export default function ServerConfig({}: Props) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="difficulty">Difficulty</Label>
-            <Select onValueChange={setGameMode}>
+            <Select onValueChange={setDifficulty}>
               <SelectTrigger id="difficulty">
                 <SelectValue placeholder="Select difficulty" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="peaceful">Peaceful</SelectItem>
                 <SelectItem value="easy">Easy</SelectItem>
-                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="normal">Normal</SelectItem>
                 <SelectItem value="hard">Hard</SelectItem>
               </SelectContent>
             </Select>
