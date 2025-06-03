@@ -1,11 +1,17 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import ServerConfig from "./components/server-config/server-config";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="flex flex-col w-full justify-between min-h-screen p-8 md:p-20 gap-12">
       <main className="flex w-full flex-col gap-[32px] items-center sm:items-start">
-        <h1 className="text-5xl mx-auto">CraftUp</h1>
+        <header className="mx-auto">
+          <h1 className="text-yellow-300 text-5xl font-[Minecraft] mx-auto pulse-header">
+            CraftUp!
+          </h1>
+        </header>
+
         <ServerConfig />
       </main>
       <footer className="flex gap-[24px] flex-wrap items-center justify-center">
@@ -14,9 +20,9 @@ export default function Home() {
             href="https://github.com/ChristianHopf/CraftUp"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2"
+            className="flex text-md text-white font-semibold items-center justify-center gap-2"
           >
-            <GitHubLogoIcon className="text-3xl" />
+            <GitHubLogoIcon />
             GitHub
           </a>
         </span>

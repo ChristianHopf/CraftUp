@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Help from "../help";
+
+import "@/app/globals.css";
 
 // type Props = {};
 
@@ -75,10 +77,10 @@ export default function ServerConfig() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-full max-w-4xl mx-auto space-y-6"
+      className="flex flex-col w-full max-w-4xl mx-auto space-y-6 fade-in"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow space-y-6">
+        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow-lg space-y-6">
           <div className="space-y-4">
             <h1 className="text-xl font-semibold">Docker Configuration</h1>
             <div className="space-y-2">
@@ -88,6 +90,7 @@ export default function ServerConfig() {
                 id="image"
                 value={dockerImage}
                 onChange={(e) => setDockerImage(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value={"itzg/minecraft:latest"}>
                   itzg/minecraft:latest
@@ -96,7 +99,7 @@ export default function ServerConfig() {
             </div>
           </div>
         </ScrollArea>
-        <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow space-y-6">
+        <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow-lg space-y-6">
           <div className="space-y-4">
             <h1 className="text-xl font-semibold">Server Configuration</h1>
             <div className="space-y-2">
@@ -106,6 +109,7 @@ export default function ServerConfig() {
                 id="serverVersion"
                 value={serverVersion}
                 onChange={(e) => setServerVersion(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value="1.20.4">1.20.4</option>
                 <option value="1.20.1">1.20.1</option>
@@ -114,33 +118,44 @@ export default function ServerConfig() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="maxPlayers">Max Players</Label>
-              <Input
-                id="maxPlayers"
+              <input
                 type="number"
+                id="maxPlayers"
                 min={1}
                 max={100}
                 value={maxPlayers}
                 required
                 onChange={(e) => setMaxPlayers(Number(e.target.value))}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="worldName">World Name</Label>
-              <Input
+              <input
+                type="text"
                 id="worldName"
                 value={worldName}
                 onChange={(e) => setWorldName(e.target.value)}
                 placeholder="world"
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="worldSeed">World Seed</Label>
-              <Input
+              <input
+                type="text"
                 id="worldSeed"
                 value={worldSeed}
                 onChange={(e) => setWorldSeed(e.target.value)}
                 placeholder="Leave blank for random"
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
+              {/* <Input
+                id="worldSeed"
+                value={worldSeed}
+                onChange={(e) => setWorldSeed(e.target.value)}
+                placeholder="Leave blank for random"
+              /> */}
             </div>
             <div className="space-y-2">
               <label htmlFor="gameMode">Game Mode</label>
@@ -149,6 +164,7 @@ export default function ServerConfig() {
                 id="gameMode"
                 value={gameMode}
                 onChange={(e) => setGameMode(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value="Survival">Survival</option>
                 <option value="Creative">Creative</option>
@@ -162,6 +178,7 @@ export default function ServerConfig() {
                 id="difficulty"
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value="Peaceful">Peaceful</option>
                 <option value="Easy">Easy</option>
@@ -194,7 +211,7 @@ export default function ServerConfig() {
         </ScrollArea>
       </div>
 
-      <Button type="submit" className="mx-auto">
+      <Button type="submit" variant="default" className="mx-auto">
         Generate Dockerfile
       </Button>
       {showHelp && <Help />}
