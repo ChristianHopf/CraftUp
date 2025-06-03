@@ -1,4 +1,3 @@
-// import Image from "next/image";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import ServerConfig from "./components/server-config/server-config";
 
