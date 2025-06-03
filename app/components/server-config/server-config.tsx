@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Help from "../help";
@@ -193,7 +192,9 @@ export default function ServerConfig() {
                 name="pvpEnabled"
                 id="pvpEnabled"
                 checked={pvpEnabled}
-                onChange={(e) => setPvpEnabled(!pvpEnabled)}
+                onChange={(e) => {
+                  setPvpEnabled(e.target.checked);
+                }}
               />
             </div>
             {/* <div className="flex items-center gap-4">

@@ -1,6 +1,5 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import ServerConfig from "./components/server-config/server-config";
-import Image from "next/image";
 
 export default function Home() {
   return (
