@@ -40,4 +40,11 @@ describe("Page", () => {
     const pvpCheckbox = screen.getByLabelText("PvP Enabled");
     expect(pvpCheckbox).toBeInTheDocument();
   });
+
+  it("renders the generate button", () => {
+    render(<ServerConfig />);
+
+    const generateButton = screen.getByText("Generate Dockerfile");
+    expect(generateButton).toBeInTheDocument();
+  });
 });
