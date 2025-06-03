@@ -3,13 +3,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Help from "../help";
@@ -17,9 +10,7 @@ import Help from "../help";
 // type Props = {};
 
 export default function ServerConfig() {
-  const [dockerImage, setDockerImage] = useState(
-    "itzg/minecraft-server:latest"
-  );
+  const [dockerImage, setDockerImage] = useState("itzg/minecraft:latest");
   const [serverVersion, setServerVersion] = useState("1.20.4");
   // const [containerName, setContainerName] = useState("");
   const [maxPlayers, setMaxPlayers] = useState(8);
@@ -91,22 +82,17 @@ export default function ServerConfig() {
           <div className="space-y-4">
             <h1 className="text-xl font-semibold">Docker Configuration</h1>
             <div className="space-y-2">
-              <Label htmlFor="dockerImage">Docker Image</Label>
-              <Select
+              <label htmlFor="image">Docker Image</label>
+              <select
+                name="image"
+                id="image"
                 value={dockerImage}
-                onValueChange={setDockerImage}
-                // defaultValue={"itzg/minecraft-server:latest"}
-                required
+                onChange={(e) => setDockerImage(e.target.value)}
               >
-                <SelectTrigger id="dockerImage">
-                  <SelectValue>{dockerImage}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={"itzg/minecraft-server:latest"}>
-                    itzg/minecraft-server:latest
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+                <option value={"itzg/minecraft:latest"}>
+                  itzg/minecraft:latest
+                </option>
+              </select>
             </div>
           </div>
         </ScrollArea>
@@ -114,21 +100,17 @@ export default function ServerConfig() {
           <div className="space-y-4">
             <h1 className="text-xl font-semibold">Server Configuration</h1>
             <div className="space-y-2">
-              <Label htmlFor="serverVersion">Server Version</Label>
-              <Select
-                onValueChange={setServerVersion}
-                defaultValue="1.20.4"
-                required
+              <label htmlFor="serverVersion">Server Version</label>
+              <select
+                name="serverVersion"
+                id="serverVersion"
+                value={serverVersion}
+                onChange={(e) => setServerVersion(e.target.value)}
               >
-                <SelectTrigger id="serverVersion">
-                  <SelectValue>{serverVersion}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1.20.4">1.20.4</SelectItem>
-                  <SelectItem value="1.20.1">1.20.1</SelectItem>
-                  <SelectItem value="1.19.4">1.19.4</SelectItem>
-                </SelectContent>
-              </Select>
+                <option value="1.20.4">1.20.4</option>
+                <option value="1.20.1">1.20.1</option>
+                <option value="1.19.4">1.19.4</option>
+              </select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="maxPlayers">Max Players</Label>
@@ -161,41 +143,39 @@ export default function ServerConfig() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="gameMode">Game Mode</Label>
-              <Select onValueChange={setGameMode} defaultValue="Survival">
-                <SelectTrigger id="gameMode">
-                  <SelectValue>{gameMode}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Survival">Survival</SelectItem>
-                  <SelectItem value="Creative">Creative</SelectItem>
-                  <SelectItem value="Hardcore">Hardcore</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="gameMode">Game Mode</label>
+              <select
+                name="gameMode"
+                id="gameMode"
+                value={gameMode}
+                onChange={(e) => setGameMode(e.target.value)}
+              >
+                <option value="Survival">Survival</option>
+                <option value="Creative">Creative</option>
+                <option value="Hardcore">Hardcore</option>
+              </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="difficulty">Difficulty</Label>
-              <Select onValueChange={setDifficulty} defaultValue="Normal">
-                <SelectTrigger id="difficulty">
-                  <SelectValue>{difficulty}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Peaceful">Peaceful</SelectItem>
-                  <SelectItem value="Easy">Easy</SelectItem>
-                  <SelectItem value="Normal">Normal</SelectItem>
-                  <SelectItem value="Hard">Hard</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="difficulty">Difficulty</label>
+              <select
+                name="difficulty"
+                id="difficulty"
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+              >
+                <option value="Peaceful">Peaceful</option>
+                <option value="Easy">Easy</option>
+                <option value="Normal">Normal</option>
+                <option value="Hard">Hard</option>
+              </select>
             </div>
             <div className="flex items-center gap-4">
-              <Label htmlFor="pvpEnabled">PvP Enabled</Label>
+              <label htmlFor="pvpEnabled">Enable PvP</label>
               <input
                 type="checkbox"
                 id="pvpEnabled"
                 checked={pvpEnabled}
-                onChange={() => {
-                  setPvpEnabled((prev) => !prev);
-                }}
+                onChange={(e) => setPvpEnabled(e.target.checked)}
               />
             </div>
             {/* <div className="flex items-center gap-4">

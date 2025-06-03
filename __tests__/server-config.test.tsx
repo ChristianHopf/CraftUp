@@ -37,7 +37,7 @@ describe("Page", () => {
     const difficultySelect = screen.getByLabelText("Difficulty");
     expect(difficultySelect).toBeInTheDocument();
 
-    const pvpCheckbox = screen.getByLabelText("PvP Enabled");
+    const pvpCheckbox = screen.getByLabelText("Enable PvP");
     expect(pvpCheckbox).toBeInTheDocument();
   });
 
