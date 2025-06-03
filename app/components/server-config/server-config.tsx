@@ -11,7 +11,6 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
-import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Help from "../help";
 
@@ -29,7 +28,7 @@ export default function ServerConfig() {
   const [gameMode, setGameMode] = useState("Survival");
   const [difficulty, setDifficulty] = useState("Normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
-  const [eula, setEula] = useState(true);
+  // const [eula, setEula] = useState(true);
 
   const [showHelp, setShowHelp] = useState(false);
 
@@ -109,17 +108,6 @@ export default function ServerConfig() {
                 </SelectContent>
               </Select>
             </div>
-
-            {/* <div className="space-y-2">
-              <Label htmlFor="containerName">Container Name</Label>
-              <Input
-                id="containerName"
-                type="text"
-                value={containerName}
-                onChange={(e) => setContainerName(e.target.value)}
-                placeholder="e.g., my-minecraft-server"
-              />
-            </div> */}
           </div>
         </ScrollArea>
         <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow space-y-6">
@@ -201,16 +189,26 @@ export default function ServerConfig() {
             </div>
             <div className="flex items-center gap-4">
               <Label htmlFor="pvpEnabled">PvP Enabled</Label>
-              <Switch
+              <input
+                type="checkbox"
                 id="pvpEnabled"
                 checked={pvpEnabled}
-                onCheckedChange={setPvpEnabled}
+                onChange={() => {
+                  setPvpEnabled((prev) => !prev);
+                }}
               />
             </div>
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
               <Label htmlFor="eula">Accept EULA</Label>
-              <Switch id="eula" checked={eula} onCheckedChange={setEula} />
-            </div>
+              <input
+                type="checkbox"
+                id="eula"
+                checked={eula}
+                onChange={() => {
+                  setEula((prev) => !prev);
+                }}
+              />
+            </div> */}
           </div>
         </ScrollArea>
       </div>
