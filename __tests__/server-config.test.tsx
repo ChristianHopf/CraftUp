@@ -19,8 +19,8 @@ describe("Page", () => {
     const heading = screen.getByText("Server Configuration");
     expect(heading).toBeInTheDocument();
 
-    const serverSelect = screen.getByLabelText("Server Version");
-    expect(serverSelect).toBeInTheDocument();
+    const serverVersionSelect = screen.getByLabelText("Server Version");
+    expect(serverVersionSelect).toBeInTheDocument();
 
     const maxPlayersInput = screen.getByLabelText("Max Players");
     expect(maxPlayersInput).toBeInTheDocument();
