@@ -2,25 +2,16 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
-import { Switch } from "@/components/ui/switch";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Help from "../help";
+
+import "@/app/globals.css";
 
 // type Props = {};
 
 export default function ServerConfig() {
-  const [dockerImage, setDockerImage] = useState(
-    "itzg/minecraft-server:latest"
-  );
+  const [dockerImage, setDockerImage] = useState("itzg/minecraft:latest");
   const [serverVersion, setServerVersion] = useState("1.20.4");
   // const [containerName, setContainerName] = useState("");
   const [maxPlayers, setMaxPlayers] = useState(8);
@@ -29,7 +20,7 @@ export default function ServerConfig() {
   const [gameMode, setGameMode] = useState("Survival");
   const [difficulty, setDifficulty] = useState("Normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
-  const [eula, setEula] = useState(true);
+  // const [eula, setEula] = useState(true);
 
   const [showHelp, setShowHelp] = useState(false);
 
@@ -85,137 +76,143 @@ export default function ServerConfig() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-full max-w-4xl mx-auto space-y-6"
+      className="flex flex-col w-full max-w-4xl mx-auto space-y-6 fade-in"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow space-y-6">
+        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow-lg space-y-6">
           <div className="space-y-4">
             <h1 className="text-xl font-semibold">Docker Configuration</h1>
             <div className="space-y-2">
-              <Label htmlFor="dockerImage">Docker Image</Label>
-              <Select
+              <label htmlFor="image">Docker Image</label>
+              <select
+                name="image"
+                id="image"
                 value={dockerImage}
-                onValueChange={setDockerImage}
-                // defaultValue={"itzg/minecraft-server:latest"}
-                required
+                onChange={(e) => setDockerImage(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
-                <SelectTrigger id="dockerImage">
-                  <SelectValue>{dockerImage}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={"itzg/minecraft-server:latest"}>
-                    itzg/minecraft-server:latest
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+                <option value={"itzg/minecraft:latest"}>
+                  itzg/minecraft:latest
+                </option>
+              </select>
             </div>
-
-            {/* <div className="space-y-2">
-              <Label htmlFor="containerName">Container Name</Label>
-              <Input
-                id="containerName"
-                type="text"
-                value={containerName}
-                onChange={(e) => setContainerName(e.target.value)}
-                placeholder="e.g., my-minecraft-server"
-              />
-            </div> */}
           </div>
         </ScrollArea>
-        <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow space-y-6">
+        <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow-lg space-y-6">
           <div className="space-y-4">
             <h1 className="text-xl font-semibold">Server Configuration</h1>
             <div className="space-y-2">
-              <Label htmlFor="serverVersion">Server Version</Label>
-              <Select
-                onValueChange={setServerVersion}
-                defaultValue="1.20.4"
-                required
+              <label htmlFor="serverVersion">Server Version</label>
+              <select
+                name="serverVersion"
+                id="serverVersion"
+                value={serverVersion}
+                onChange={(e) => setServerVersion(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
-                <SelectTrigger id="serverVersion">
-                  <SelectValue>{serverVersion}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1.20.4">1.20.4</SelectItem>
-                  <SelectItem value="1.20.1">1.20.1</SelectItem>
-                  <SelectItem value="1.19.4">1.19.4</SelectItem>
-                </SelectContent>
-              </Select>
+                <option value="1.20.4">1.20.4</option>
+                <option value="1.20.1">1.20.1</option>
+                <option value="1.19.4">1.19.4</option>
+              </select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="maxPlayers">Max Players</Label>
-              <Input
-                id="maxPlayers"
+              <input
                 type="number"
+                id="maxPlayers"
                 min={1}
                 max={100}
                 value={maxPlayers}
                 required
                 onChange={(e) => setMaxPlayers(Number(e.target.value))}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="worldName">World Name</Label>
-              <Input
+              <input
+                type="text"
                 id="worldName"
                 value={worldName}
                 onChange={(e) => setWorldName(e.target.value)}
                 placeholder="world"
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="worldSeed">World Seed</Label>
-              <Input
+              <input
+                type="text"
                 id="worldSeed"
                 value={worldSeed}
                 onChange={(e) => setWorldSeed(e.target.value)}
                 placeholder="Leave blank for random"
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
+              {/* <Input
+                id="worldSeed"
+                value={worldSeed}
+                onChange={(e) => setWorldSeed(e.target.value)}
+                placeholder="Leave blank for random"
+              /> */}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="gameMode">Game Mode</Label>
-              <Select onValueChange={setGameMode} defaultValue="Survival">
-                <SelectTrigger id="gameMode">
-                  <SelectValue>{gameMode}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Survival">Survival</SelectItem>
-                  <SelectItem value="Creative">Creative</SelectItem>
-                  <SelectItem value="Hardcore">Hardcore</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="gameMode">Game Mode</label>
+              <select
+                name="gameMode"
+                id="gameMode"
+                value={gameMode}
+                onChange={(e) => setGameMode(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+              >
+                <option value="Survival">Survival</option>
+                <option value="Creative">Creative</option>
+                <option value="Hardcore">Hardcore</option>
+              </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="difficulty">Difficulty</Label>
-              <Select onValueChange={setDifficulty} defaultValue="Normal">
-                <SelectTrigger id="difficulty">
-                  <SelectValue>{difficulty}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Peaceful">Peaceful</SelectItem>
-                  <SelectItem value="Easy">Easy</SelectItem>
-                  <SelectItem value="Normal">Normal</SelectItem>
-                  <SelectItem value="Hard">Hard</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="difficulty">Difficulty</label>
+              <select
+                name="difficulty"
+                id="difficulty"
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+              >
+                <option value="Peaceful">Peaceful</option>
+                <option value="Easy">Easy</option>
+                <option value="Normal">Normal</option>
+                <option value="Hard">Hard</option>
+              </select>
             </div>
             <div className="flex items-center gap-4">
-              <Label htmlFor="pvpEnabled">PvP Enabled</Label>
-              <Switch
+              <label htmlFor="pvpEnabled">Enable PvP</label>
+              <input
+                type="checkbox"
+                name="pvpEnabled"
                 id="pvpEnabled"
                 checked={pvpEnabled}
-                onCheckedChange={setPvpEnabled}
+                onChange={(e) => {
+                  setPvpEnabled(e.target.checked);
+                }}
               />
             </div>
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
               <Label htmlFor="eula">Accept EULA</Label>
-              <Switch id="eula" checked={eula} onCheckedChange={setEula} />
-            </div>
+              <input
+                type="checkbox"
+                id="eula"
+                checked={eula}
+                onChange={() => {
+                  setEula((prev) => !prev);
+                }}
+              />
+            </div> */}
           </div>
         </ScrollArea>
       </div>
 
-      <Button type="submit" className="mx-auto">
+      <Button type="submit" variant="default" className="mx-auto">
         Generate Dockerfile
       </Button>
       {showHelp && <Help />}

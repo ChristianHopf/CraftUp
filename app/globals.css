@@ -45,7 +45,9 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  background: linear-gradient(rgba(89, 61, 40, 1) 0%, rgba(89, 61, 40, 1) 75%, rgba(0, 0, 0, 1) 100%);
+  /* --background: oklch(0.3865 0.0513 57.39); */
+  /* --background: oklch(1 0 0) */
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -118,5 +120,44 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('/fonts/Minecraft.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Prevents layout shift */
+}
+
+.fade-in {
+  animation: fadeIn 200ms ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulse-header {
+  animation: pulse-header 2s ease-in-out infinite;
+}
+
+@keyframes pulse-header {
+  0% {
+    transform: scale(100%);
+  }
+  50% {
+    transform: scale(110%);
+  }
+  100% {
+    transform: scale(100%);
   }
 }
