@@ -4,7 +4,7 @@
 
 export default function Help() {
   return (
-    <div className="max-w-xl mx-auto bg-green-50 border border-green-300 p-6 rounded-2xl shadow-sm">
+    <div className="max-w-xl mx-auto bg-green-100 border border-green-300 p-6 rounded-2xl shadow-sm">
       <h2 className="font-semibold text-xl">Your Dockerfile is ready!</h2>
       <p className="mb-4">Follow these steps to run your server:</p>
       <ol className="list-decimal list-inside space-y-2 mb-4">
