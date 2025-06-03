@@ -173,9 +173,10 @@ export default function ServerConfig() {
               <label htmlFor="pvpEnabled">Enable PvP</label>
               <input
                 type="checkbox"
+                name="pvpEnabled"
                 id="pvpEnabled"
                 checked={pvpEnabled}
-                onChange={(e) => setPvpEnabled(e.target.checked)}
+                onChange={(e) => setPvpEnabled(!pvpEnabled)}
               />
             </div>
             {/* <div className="flex items-center gap-4">

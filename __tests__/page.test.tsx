@@ -2,7 +2,7 @@
 import Home from "@/app/page";
 import "@testing-library/jest-dom";
 import { render, screen, act, fireEvent } from "@testing-library/react";
-
+import userEvent from "@testing-library/user-event";
 // Mock blob for generating dockerfile
 // const mockCreateObjectURL = jest.fn(() => "mock-create-object-url");
 // const mockRevokeObjectURL = jest.fn(() => "mock-revoke-object-url");
