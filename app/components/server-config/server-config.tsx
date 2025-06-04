@@ -96,7 +96,7 @@ export default function ServerConfig() {
                 id="image"
                 value={dockerImage}
                 onChange={(e) => setDockerImage(e.target.value)}
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value={"itzg/minecraft:latest"}>
                   itzg/minecraft:latest
@@ -122,7 +122,7 @@ export default function ServerConfig() {
                 id="serverVersion"
                 value={serverVersion}
                 onChange={(e) => setServerVersion(e.target.value)}
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value="1.20.4">1.20.4</option>
                 <option value="1.20.1">1.20.1</option>
@@ -144,7 +144,7 @@ export default function ServerConfig() {
                 value={maxPlayers}
                 required
                 onChange={(e) => setMaxPlayers(Number(e.target.value))}
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
@@ -160,7 +160,7 @@ export default function ServerConfig() {
                 value={worldName}
                 onChange={(e) => setWorldName(e.target.value)}
                 placeholder="world"
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
@@ -176,7 +176,7 @@ export default function ServerConfig() {
                 value={worldSeed}
                 onChange={(e) => setWorldSeed(e.target.value)}
                 placeholder="Leave blank for random"
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
             </div>
             <div className="space-y-2">
@@ -191,7 +191,7 @@ export default function ServerConfig() {
                 id="gameMode"
                 value={gameMode}
                 onChange={(e) => setGameMode(e.target.value)}
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value="Survival">Survival</option>
                 <option value="Creative">Creative</option>
@@ -211,7 +211,7 @@ export default function ServerConfig() {
                 id="difficulty"
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
-                className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
+                className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
                 <option value="Peaceful">Peaceful</option>
                 <option value="Easy">Easy</option>
