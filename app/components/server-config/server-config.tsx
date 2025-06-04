@@ -19,6 +19,7 @@ export default function ServerConfig() {
   const [gameMode, setGameMode] = useState("Survival");
   const [difficulty, setDifficulty] = useState("Normal");
   const [pvpEnabled, setPvpEnabled] = useState(false);
+  const [hardcore, setHardcore] = useState(false);
   // const [eula, setEula] = useState(true);
 
   const [showHelp, setShowHelp] = useState(false);
@@ -218,7 +219,24 @@ export default function ServerConfig() {
                 <option value="Hard">Hard</option>
               </select>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between gap-4">
+              <label
+                htmlFor="hardcore"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Enable Hardcore Mode
+              </label>
+              <input
+                type="checkbox"
+                name="hardcore"
+                id="hardcore"
+                checked={hardcore}
+                onChange={(e) => {
+                  setHardcore(e.target.checked);
+                }}
+              />
+            </div>
+            <div className="flex items-center justify-between gap-4">
               <label
                 htmlFor="pvpEnabled"
                 className="font-[Minecraft] text-menu-text"
