@@ -79,11 +79,18 @@ export default function ServerConfig() {
       className="flex flex-col w-full max-w-4xl mx-auto space-y-6 fade-in"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow-lg space-y-6">
-          <div className="space-y-4">
-            <h1 className="text-xl font-semibold">Docker Configuration</h1>
+        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto px-6 py-4 bg-menu rounded-2xl shadow-lg space-y-6">
+          <div className="space-y-4 mt-2">
+            <h1 className="text-2xl md:text-3xl text-menu-text font-[Minecraft]">
+              Docker Configuration
+            </h1>
             <div className="space-y-2">
-              <label htmlFor="image">Docker Image</label>
+              <label
+                htmlFor="image"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Docker Image
+              </label>
               <select
                 name="image"
                 id="image"
@@ -98,11 +105,18 @@ export default function ServerConfig() {
             </div>
           </div>
         </ScrollArea>
-        <ScrollArea className="flex max-w-2xl w-full h-[50vh] mx-auto p-6 bg-muted rounded-2xl shadow-lg space-y-6">
-          <div className="space-y-4">
-            <h1 className="text-xl font-semibold">Server Configuration</h1>
+        <ScrollArea className="max-w-2xl w-full h-[50vh] mx-auto px-6 py-4 bg-menu rounded-2xl shadow-lg space-y-6">
+          <div className="space-y-4 mt-2">
+            <h1 className="text-2xl md:text-3xl text-[#3F3F3F] font-[Minecraft]">
+              Server Configuration
+            </h1>
             <div className="space-y-2">
-              <label htmlFor="serverVersion">Server Version</label>
+              <label
+                htmlFor="serverVersion"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Server Version
+              </label>
               <select
                 name="serverVersion"
                 id="serverVersion"
@@ -116,7 +130,12 @@ export default function ServerConfig() {
               </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="maxPlayers">Max Players</Label>
+              <label
+                htmlFor="maxPlayers"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Max Players
+              </label>
               <input
                 type="number"
                 id="maxPlayers"
@@ -129,7 +148,12 @@ export default function ServerConfig() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="worldName">World Name</Label>
+              <label
+                htmlFor="worldName"
+                className="font-[Minecraft] text-menu-text"
+              >
+                World Name
+              </label>
               <input
                 type="text"
                 id="worldName"
@@ -140,7 +164,12 @@ export default function ServerConfig() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="worldSeed">World Seed</Label>
+              <label
+                htmlFor="worldSeed"
+                className="font-[Minecraft] text-menu-text"
+              >
+                World Seed
+              </label>
               <input
                 type="text"
                 id="worldSeed"
@@ -157,7 +186,12 @@ export default function ServerConfig() {
               /> */}
             </div>
             <div className="space-y-2">
-              <label htmlFor="gameMode">Game Mode</label>
+              <label
+                htmlFor="gameMode"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Game Mode
+              </label>
               <select
                 name="gameMode"
                 id="gameMode"
@@ -171,7 +205,12 @@ export default function ServerConfig() {
               </select>
             </div>
             <div className="space-y-2">
-              <label htmlFor="difficulty">Difficulty</label>
+              <label
+                htmlFor="difficulty"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Difficulty
+              </label>
               <select
                 name="difficulty"
                 id="difficulty"
@@ -186,7 +225,12 @@ export default function ServerConfig() {
               </select>
             </div>
             <div className="flex items-center gap-4">
-              <label htmlFor="pvpEnabled">Enable PvP</label>
+              <label
+                htmlFor="pvpEnabled"
+                className="font-[Minecraft] text-menu-text"
+              >
+                Enable PvP
+              </label>
               <input
                 type="checkbox"
                 name="pvpEnabled"
