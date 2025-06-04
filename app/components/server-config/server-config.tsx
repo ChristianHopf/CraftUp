@@ -177,12 +177,6 @@ export default function ServerConfig() {
                 placeholder="Leave blank for random"
                 className="block w-full border-1 border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               />
-              {/* <Input
-                id="worldSeed"
-                value={worldSeed}
-                onChange={(e) => setWorldSeed(e.target.value)}
-                placeholder="Leave blank for random"
-              /> */}
             </div>
             <div className="space-y-2">
               <label
@@ -241,17 +235,6 @@ export default function ServerConfig() {
                 }}
               />
             </div>
-            {/* <div className="flex items-center gap-4">
-              <Label htmlFor="eula">Accept EULA</Label>
-              <input
-                type="checkbox"
-                id="eula"
-                checked={eula}
-                onChange={() => {
-                  setEula((prev) => !prev);
-                }}
-              />
-            </div> */}
           </div>
         </ScrollArea>
       </div>
