@@ -200,7 +200,8 @@ export default function ServerConfig() {
               >
                 <option value="Survival">Survival</option>
                 <option value="Creative">Creative</option>
-                <option value="Hardcore">Hardcore</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Spectator">Spectator</option>
               </select>
             </div>
             <div className="space-y-2">
