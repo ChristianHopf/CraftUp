@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CraftUp",
+  title: "CraftUp | Configure and host a Minecraft server with Docker",
   description: "Configure a self-hosted Minecraft server with Docker",
 };
 

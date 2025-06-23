@@ -124,9 +124,12 @@ export default function ServerConfig() {
                 onChange={(e) => setServerVersion(e.target.value)}
                 className="block w-full border-1 border-black bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none mt-1"
               >
-                <option value="1.20.4">1.20.4</option>
-                <option value="1.20.1">1.20.1</option>
-                <option value="1.19.4">1.19.4</option>
+                <option value="1.21.6">1.20.4</option>
+                <option value="1.21.5">1.20.1</option>
+                <option value="1.21.4">1.19.4</option>
+                <option value="1.21.2">1.20.4</option>
+                <option value="1.21.1">1.20.1</option>
+                <option value="1.21">1.19.4</option>
               </select>
             </div>
             <div className="space-y-2">
@@ -257,7 +260,7 @@ export default function ServerConfig() {
         </ScrollArea>
       </div>
 
-      <Button type="submit" variant="default" className="mx-auto">
+      <Button type="submit" variant="default" className="mx-auto cursor-pointer">
         Generate Dockerfile
       </Button>
       {showHelp && <Help />}
